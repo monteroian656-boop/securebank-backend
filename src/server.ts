@@ -1,7 +1,6 @@
 import app from "./app";
+import { env } from "./config/env";
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`SecureBank API ejecutándose en http://localhost:${PORT}`);
+app.listen(env.port, () => {
+  console.log(`SecureBank API ejecutándose en http://localhost:${env.port}`);
 });
