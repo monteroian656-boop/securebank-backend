@@ -1,9 +1,23 @@
+import { AuditLog, CreateAuditLogDto } from "../types/audit.types";
+
 export const auditService = {
-  getAll: async () => {
-    throw new Error("Obtener auditoría aún no implementado");
+  createLog: async (logData: CreateAuditLogDto): Promise<AuditLog> => {
+    // TODO: Reemplazar con llamada a BD
+    const newLog: AuditLog = {
+      id: "log_" + Date.now(),
+      ...logData,
+      timestamp: new Date()
+    };
+    return newLog;
   },
 
-  getById: async () => {
-    throw new Error("Obtener registro de auditoría aún no implementado");
+  getAll: async (): Promise<AuditLog[]> => {
+    // TODO: Reemplazar con consulta a BD
+    return [];
+  },
+
+  getById: async (id: string): Promise<AuditLog | null> => {
+    // TODO: Reemplazar con consulta a BD por ID
+    return null;
   }
 };

@@ -1,16 +1,26 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
+import { auditService } from "../services/audit.service";
 
 export const auditController = {
-  getAll: (_req: Request, res: Response) => {
-    res.json({
-      message: "GET audit logs endpoint listo para implementar"
-    });
+  getAll: async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+      const logs = await auditService.getAll();
+      res.json(logs);
+    } catch (error) {
+      next(error);
+    }
   },
 
-  getById: (req: Request, res: Response) => {
-    res.json({
-      message: "GET audit log by ID endpoint listo para implementar",
-      id: req.params.id
-    });
+  getById: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const log = await auditService.getById(req.params.id);
+      if (!log) {
+        return res.status(404).json({ message: "Registro de auditoría no encontrado" });
+      }
+      res.json(log);
+    } catch (error) {
+      next(error);
+    }
   }
 };
+

@@ -1,15 +1,23 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
+import { authService } from "../services/auth.service";
 
 export const authController = {
-  login: (_req: Request, res: Response) => {
-    res.json({
-      message: "Login endpoint listo para implementar"
-    });
+  login: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await authService.login(req.body, req.ip);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
   },
 
-  logout: (_req: Request, res: Response) => {
-    res.json({
-      message: "Logout endpoint listo para implementar"
-    });
+  logout: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = req.body.userId;
+      const result = await authService.logout(userId, req.ip);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
   }
 };

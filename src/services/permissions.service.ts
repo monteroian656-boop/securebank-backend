@@ -1,21 +1,28 @@
+import { Permission, CreatePermissionDto, UpdatePermissionDto } from "../types/permission.types";
+
 export const permissionsService = {
-  getAll: async () => {
-    throw new Error("Obtener permisos aún no implementado");
+  getAll: async (): Promise<Permission[]> => {
+    // TODO: Consulta BD
+    return [];
   },
 
-  getById: async () => {
-    throw new Error("Obtener permiso aún no implementado");
+  getById: async (id: string): Promise<Permission | null> => {
+    // TODO: Consulta BD por ID
+    return null;
   },
 
-  create: async () => {
-    throw new Error("Crear permiso aún no implementado");
+  create: async (data: CreatePermissionDto): Promise<Permission> => {
+    // TODO: Crear en BD
+    return { id: "perm_" + Date.now(), ...data };
   },
 
-  update: async () => {
-    throw new Error("Actualizar permiso aún no implementado");
+  update: async (id: string, data: UpdatePermissionDto): Promise<Permission | null> => {
+    // TODO: Actualizar en BD
+    return null;
   },
 
-  delete: async () => {
-    throw new Error("Eliminar permiso aún no implementado");
+  delete: async (id: string): Promise<boolean> => {
+    // TODO: Eliminar en BD
+    return true;
   }
 };

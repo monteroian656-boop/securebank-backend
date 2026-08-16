@@ -1,21 +1,29 @@
+import { Role, CreateRoleDto, UpdateRoleDto } from "../types/role.types";
+
 export const rolesService = {
-  getAll: async () => {
-    throw new Error("Obtener roles aún no implementado");
+  getAll: async (): Promise<Role[]> => {
+    // TODO: Consulta BD
+    return [];
   },
 
-  getById: async () => {
-    throw new Error("Obtener rol aún no implementado");
+  getById: async (id: string): Promise<Role | null> => {
+    // TODO: Consulta BD por ID
+    return null;
   },
 
-  create: async () => {
-    throw new Error("Crear rol aún no implementado");
+  create: async (data: CreateRoleDto): Promise<Role> => {
+    // TODO: Validar nombre único y persistir
+    return { id: "role_" + Date.now(), ...data, createdAt: new Date() };
   },
 
-  update: async () => {
-    throw new Error("Actualizar rol aún no implementado");
+  update: async (id: string, data: UpdateRoleDto): Promise<Role | null> => {
+    // TODO: Actualizar en BD
+    return null;
   },
 
-  delete: async () => {
-    throw new Error("Eliminar rol aún no implementado");
+  delete: async (id: string): Promise<boolean> => {
+    // TODO: Validar que ningún usuario tenga este rol asignado antes de borrar
+    return true;
   }
 };
+
